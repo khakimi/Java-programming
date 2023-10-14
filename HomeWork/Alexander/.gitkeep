@@ -1,0 +1,58 @@
+//1.Разработать класс круг с полями
+//2.Написать методы для нахождения площадей
+//3.написать метод принимающий параметр другой круг
+//создать main с 2 кругами
+class Circle {
+    public double x; // абсцисса x
+    public double y; // ордината y
+    public double r; // радиус круга
+ 
+    public void printCircle() {
+        System.out.println("Окружность с центром ("+x+";"+y+") и радиусом "+r);
+    }    
+    public void moveCircle(double a, double b) {
+        x = x + a;
+        y = y + b;
+    }
+    public void zoomCircle(double r) {
+        this.r = this.r * r;
+    }
+    public Circle() {
+        x = 0.0;
+        y = 0.0;
+        r = 1.0;
+    }
+    public Circle(double a, double b, double s) {
+        x = a;
+        y = b;
+        r = s;
+    }  
+    //  Площадь круга S=п* 2r
+    public double squareCircle() {
+        double s = Math.PI * r * r;
+        return s;
+    }
+    // Проверка на равенство  окружностей по площадям
+    public boolean equalsCircle(Circle cir) {
+        if(this.squareCircle() == cir.squareCircle()) {
+            return true;
+        } else {
+            return false;
+        }
+    }    
+}
+ 
+public class Main {
+    public static void main(String[] args) {
+        Circle o1 = new Circle();
+        o1.printCircle(); // Центр окружности №1 (0.0;0.0) и радиусом 1.0
+        Circle o2 = new Circle(1,-1,14);
+        o2.printCircle(); // Центр окружности №2 (1.0;-1.0) и радиусом 14.0 
+        System.out.println("Площадь круга o2: "+o2.squareCircle()); 
+        o1.zoomCircle(14);
+        if(o1.equalsCircle(o2)) {
+            System.out.println("Круги o2 и o1 имеют равную площадь");
+        } else {
+            System.out.println("Круги o2 и o1 имеют различную площадь");
+        }
+    }
